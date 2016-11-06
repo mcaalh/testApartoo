@@ -23,6 +23,9 @@ class DefaultController extends Controller
 
         return $this->render('default/index.html.twig');
     }
+
+
+    ///////////TEST ROUTE//////////
     /**
      * @Route("/test", name="test")
      */
@@ -37,10 +40,10 @@ class DefaultController extends Controller
     {
         return $this->render('default/users.html.twig');
     }
+////////FIN TEST ROUTE///////
 
 
-
-    //////liste des contacts/////////
+    //////Route liste des contacts/////////
 
 
 
@@ -58,7 +61,7 @@ class DefaultController extends Controller
     }
 
 
-    //////Creer contact/////////
+    //////Route Creer contact/////////
 
 
     /**
@@ -110,26 +113,18 @@ class DefaultController extends Controller
 
 
 
-    //////Modifier contact /////////
+    //////Route Modifier contact /////////
 
-    //////////////!!!!!!!!ne marche pas !!!!//////////
 
     /**
      * @Route("/adressbook/edit/{id}", name="edit")
      */
     public function editAction($id, Request $request)
     {
-        //List des adressbook
+        //Liste des adressbook
         $adress= $this->getDoctrine()
             ->getRepository('AppBundle:Adress')
             ->find($id);
-
-        $adress->setName($adress->name());
-        $adress->setAdresse($adress->adresse());
-        $adress->setTelephone($adress->telephone());
-        $adress->setWebsite($adress->website());
-        $adress->setEmail($adress->email());
-
 
         $form = $this->createFormBuilder($adress)
             ->add('name', TextType::class, array('attr' => array('class'=>'input-field', 'style'=>'margin-bottom:15px')))
@@ -137,12 +132,14 @@ class DefaultController extends Controller
             ->add('telephone', TextType::class, array('attr' => array('class'=>'input-field', 'style'=>'margin-bottom:15px')))
             ->add('website', TextType::class, array('attr' => array('class'=>'input-field', 'style'=>'margin-bottom:15px')))
             ->add('email', TextType::class, array('attr' => array('class'=>'input-field', 'style'=>'margin-bottom:15px')))
-            ->add('save', SubmitType::class, array('label'=>'creer le contact', 'attr' => array('class'=>'btn', 'style'=>'margin-bottom:15px')))
+            ->add('save', SubmitType::class, array('label'=>'modifier le contact', 'attr' => array('class'=>'btn', 'style'=>'margin-bottom:15px')))
             ->getForm();
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             //Get DATA
+
+
             $name = $form['name']->getData();
             $adresse = $form['adresse']->getData();
             $telephone = $form['telephone']->getData();
@@ -173,7 +170,7 @@ class DefaultController extends Controller
 
 
 
-    //////Details contact/////////
+    //////Route Details contact/////////
 
 
     /**
@@ -191,7 +188,7 @@ class DefaultController extends Controller
 
 
 
-   //////Delete contact/////////
+   //////Route Delete contact/////////
 
 
     /**
