@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="responsive-table">
+    <thead>
+    <tr>
+        <th data-field="name">Nom</th>
+        <th data-field="adresse">Adresse</th>
+        <th data-field="telephone">telephone</th>
+        <th data-field="website">Site Web</th>
+        <th data-field="email">email</th>
+    </tr>
+     </thead>
+     <tbody>
+     {% for ad in adress %}
+    <tr>
+      <td>{{ad.name}}</td>
+      <td>{{ad.adresse}}</td>
+      <td>{{ad.telephone}}</td>
+      <td>{{ad.website}}</td>
+      <td>{{ad.email}}</td>
+      <td>
+        <a href="/adressbook/details/{{ad.id}}" class="btn">View</a>
+        <a href="/adressbook/edit/{{ad.id}}" class="btn">Edit</a>
+        <a href="/adressbook/delete/{{ad.id}}" class="btn">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+     </tbody>
+    </table>
+{% endblock %}

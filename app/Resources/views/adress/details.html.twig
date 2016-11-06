@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="/adressbook" class='btn'>retour a la liste de contact</a>
+    <hr>
+    <h2>{{adresse.name}}</h2>
+    <ul class="collection">
+        <li class="collection-item">adresse: {{adresse.adresse}}</li>
+        <li class="collection-item">telephone: {{adresse.telephone}}</li>
+        <li class="collection-item">website: {{adresse.website}}</li>
+        <li class="collection-item">email: {{adresse.email}}</li>
+
+    </ul>
+{% endblock %}
